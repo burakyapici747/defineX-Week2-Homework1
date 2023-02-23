@@ -7,7 +7,7 @@ import repository.HomeRepository;
 import java.util.List;
 
 public class HomeServiceImpl implements HomeService{
-    private HomeRepository homeRepository;
+    private final HomeRepository homeRepository;
 
     public HomeServiceImpl(HomeRepository homeRepository) {
         this.homeRepository = homeRepository;
@@ -55,7 +55,7 @@ public class HomeServiceImpl implements HomeService{
         return getAll().stream()
                 .mapToDouble(Home::getSquareMeter)
                 .average()
-                .orElse(Double.NaN);
+                .orElse(0.0);
     }
 
     @Override
@@ -79,6 +79,6 @@ public class HomeServiceImpl implements HomeService{
                 .filter(home -> home.getHomeType() == homeType)
                 .mapToDouble(Home::getSquareMeter)
                 .average()
-                .orElse(Double.NaN);
+                .orElse(0.0);
     }
 }
